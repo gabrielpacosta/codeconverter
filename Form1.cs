@@ -24,6 +24,9 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            txbOutput.Text = "";
+            textBox1.Text = "";
+
             int j = 0;
             hex = txbInput.Text.Split(' ');
             for (int i = 0; i <= hex.Length; i=i+2)

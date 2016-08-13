@@ -14,8 +14,8 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         string[] hex;
-        string[] bin = new string[32];
-        string[]resultado = new string[8];
+        List<String> bin = new List<String>();
+        List<String> resultado = new List<String>();
 
         public Form1()
         {
@@ -29,16 +29,16 @@ namespace WindowsFormsApplication1
 
             int j = 0;
             hex = txbInput.Text.Split(' ');
-            for (int i = 0; i <= hex.Length; i=i+2)
+            for (int i = 0; i < hex.Length; i=i+2)
             {
                 int num = Convert.ToInt32(hex[i], 16) - 14;
                 if (num > 13)
                 {
-                    bin[j] = "1";
+                    bin.Add("1");
                 }
                 else
                 {
-                    bin[j] = "0";
+                    bin.Add("0");
                 }
                 j++;
             }
@@ -55,7 +55,9 @@ namespace WindowsFormsApplication1
                 k++;
             }
 
-            resultado = txbOutput.Text.Split(' ');
+            string[] result = txbOutput.Text.Split(' ');
+            resultado = result.OfType<string>().ToList();
+
             foreach (string r in resultado)
             {
                 textBox1.Text += Convert.ToInt32(r, 2).ToString("X");
